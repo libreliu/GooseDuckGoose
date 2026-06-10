@@ -1,68 +1,13 @@
-const dishes = [
-  {
-    title: "圣诞烤鹅",
-    answer: "goose",
-    image: "assets/christmas-goose.jpg",
-    source: "https://commons.wikimedia.org/wiki/File:Christmas_goose_(Weihnachtsgans).jpg",
-    clue: "整只大鸟上桌，皮色深、体型厚实，是欧洲节日常见的烤鹅。"
-  },
-  {
-    title: "北京烤鸭切片",
-    answer: "duck",
-    image: "assets/peking-duck-carved.jpg",
-    source: "https://en.wikipedia.org/wiki/Peking_duck",
-    clue: "薄片、脆皮、配饼和甜面酱，是北京烤鸭的经典上桌方式。"
-  },
-  {
-    title: "圣诞烤鹅二号",
-    answer: "goose",
-    image: "assets/christmas-goose-2.jpg",
-    source: "https://en.wikipedia.org/wiki/List_of_German_dishes",
-    clue: "这张还是德式节日烤鹅，整只上桌的体型和皮色是关键线索。"
-  },
-  {
-    title: "片皮鸭卷",
-    answer: "duck",
-    image: "assets/peking-duck-wrap.jpg",
-    source: "https://en.wikipedia.org/wiki/Peking_duck",
-    clue: "卷饼里包着葱丝、黄瓜和烤鸭片，这题的信号很北京。"
-  },
-  {
-    title: "烧鹅饭配梅子酱",
-    answer: "goose",
-    image: "assets/roast-goose-rice-plum-sauce.jpg",
-    source: "https://commons.wikimedia.org/wiki/File:Roast_Goose_Rice_with_Plum_Sauce.jpg",
-    clue: "烧鹅铺在白饭上，旁边配梅子酱，是很典型的粤式饭局。"
-  },
-  {
-    title: "烤鸭拼盘",
-    answer: "duck",
-    image: "assets/sliced-peking-duck.jpg",
-    source: "https://commons.wikimedia.org/wiki/File:Sliced_Peking_Duck.jpg",
-    clue: "切片摆盘、配薄饼和黄瓜葱丝，是烤鸭的高频线索。"
-  },
-  {
-    title: "鹅肝酱",
-    answer: "goose",
-    image: "assets/foie-gras-en-cocotte.jpg",
-    source: "https://en.wikipedia.org/wiki/Goose_as_food",
-    clue: "题目范围是鹅为食材的饭局，这道是鹅肝相关料理。"
-  },
-  {
-    title: "鸭腿油封",
-    answer: "duck",
-    image: "assets/confit-de-canard.jpg",
-    source: "https://en.wikipedia.org/wiki/Duck_as_food",
-    clue: "油封鸭腿常见于法餐，腿部外形容易让人和鹅腿混淆。"
-  }
-];
+const QUESTIONS_PER_GAME = 6;
+const SOURCE_FILE = "assets/sources.json";
 
 const state = {
+  dishes: [],
   round: 0,
   score: 0,
   answered: false,
   history: [],
-  order: shuffle([...dishes])
+  order: []
 };
 
 const els = {
@@ -104,17 +49,58 @@ els.nextButton.addEventListener("click", () => {
 });
 
 els.restartButton.addEventListener("click", () => {
+  startGame();
+});
+
+initGame();
+
+async function initGame() {
+  setLoadingState();
+
+  try {
+    const response = await fetch(SOURCE_FILE);
+    if (!response.ok) {
+      throw new Error(`题库加载失败：${response.status}`);
+    }
+    state.dishes = normalizeDishes(await response.json());
+    startGame();
+  } catch (error) {
+    showLoadError(error);
+  }
+}
+
+function startGame() {
   state.round = 0;
   state.score = 0;
   state.answered = false;
   state.history = [];
-  state.order = shuffle([...dishes]);
-  els.resultPanel.hidden = true;
-  document.querySelector(".game").hidden = false;
-  renderQuestion();
-});
+  state.order = sampleQuestions(state.dishes, QUESTIONS_PER_GAME);
 
-renderQuestion();
+  document.querySelector(".game").hidden = false;
+  els.resultPanel.hidden = true;
+  renderQuestion();
+}
+
+function setLoadingState() {
+  els.roundLabel.textContent = "准备题库";
+  els.scoreLabel.textContent = "0 分";
+  els.progressBar.style.width = "0";
+  els.dishTitle.textContent = "正在整理饭局照片";
+  els.dishHint.textContent = "题目会从本地 assets/sources.json 随机抽取。";
+  els.roundNote.textContent = "稍等片刻";
+  els.imageStatus.hidden = false;
+  els.imageStatus.textContent = "正在加载题库...";
+  els.choices.forEach((choice) => {
+    choice.disabled = true;
+  });
+}
+
+function showLoadError(error) {
+  els.dishTitle.textContent = "题库没端上来";
+  els.dishHint.textContent = "请用静态服务器打开页面，例如 python -m http.server 4173。";
+  els.imageStatus.hidden = false;
+  els.imageStatus.textContent = error.message;
+}
 
 function renderQuestion() {
   const dish = currentDish();
@@ -167,7 +153,8 @@ function answerQuestion(choice) {
   const rightName = dish.answer === "goose" ? "鹅" : "鸭";
   els.feedbackTitle.textContent = correct ? `猜中了，是${rightName}` : `差一点，是${rightName}`;
   els.feedbackText.textContent = `${dish.title}。${dish.clue}`;
-  els.sourceLink.href = dish.source;
+  els.sourceLink.hidden = !dish.source;
+  els.sourceLink.href = dish.source || "#";
   els.feedback.hidden = false;
   els.nextButton.hidden = false;
 }
@@ -205,8 +192,23 @@ function resultLine(percent) {
   return "别灰心，这本来就是一场油亮外皮制造的视觉陷阱。";
 }
 
+function normalizeDishes(records) {
+  return records.map((record) => ({
+    id: record.id,
+    title: record.title,
+    answer: record.answer,
+    image: record.file,
+    source: record.sourceUrl || "",
+    clue: record.clue
+  }));
+}
+
 function currentDish() {
   return state.order[state.round];
+}
+
+function sampleQuestions(items, count) {
+  return shuffle([...items]).slice(0, Math.min(count, items.length));
 }
 
 function shuffle(items) {

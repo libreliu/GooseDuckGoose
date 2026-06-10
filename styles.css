@@ -95,6 +95,31 @@ h1 {
   font-size: 0.95rem;
 }
 
+.topbar-actions {
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+
+.contribute-link {
+  min-height: 36px;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--duck);
+  background: rgba(255, 250, 240, 0.78);
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(31, 35, 40, 0.08);
+}
+
+.contribute-link:hover {
+  border-color: var(--duck);
+}
+
 .scoreboard strong {
   color: var(--ink);
   font-size: 1.65rem;
@@ -340,6 +365,16 @@ h1 {
     grid-template-columns: 1fr auto;
     justify-items: start;
     align-items: baseline;
+  }
+
+  .topbar-actions {
+    width: 100%;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+  }
+
+  .contribute-link {
+    width: 100%;
   }
 
   .question-panel {

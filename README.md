@@ -5,8 +5,26 @@
 
 ## 运行
 
-直接打开 `index.html`，或在项目目录里启动任意静态服务器。
+在项目目录里启动任意静态服务器，然后打开 `index.html`。
+
+```powershell
+python -m http.server 4173
+```
+
+浏览器访问 `http://localhost:4173/`。
 
 ## 图片来源
 
-游戏图片已下载到 `assets/`。来源、原始下载地址和本地文件名记录在 `assets/sources.json`。
+游戏图片已下载到 `assets/`。本地文件名、答案、题目描述和来源说明记录在 `assets/sources.json`。`downloadUrl` 和 `sourceUrl` 可以填写，但不是必填字段。
+
+## 添加新题目
+
+1. 把新图片放到 `assets/`。
+2. 在 `assets/sources.json` 增加一条记录，填写 `id`、`title`、`answer`、`file`、`clue` 和 `provider`。如果图片来自网页，也可以补充 `downloadUrl` 和 `sourceUrl`。
+3. 运行校验：
+
+```powershell
+node scripts/validate-assets.js
+```
+
+每局会从题库里随机抽取最多 6 道题。

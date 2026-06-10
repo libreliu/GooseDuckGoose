@@ -4,6 +4,7 @@
     "title": "圣诞烤鹅",
     "answer": "goose",
     "file": "assets/christmas-goose.jpg",
+    "clue": "整只大鸟上桌，皮色深、体型厚实，是欧洲节日常见的烤鹅。",
     "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Christmas_goose_(Weihnachtsgans).jpg?width=1100",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christmas_goose_(Weihnachtsgans).jpg",
     "provider": "Wikimedia Commons"
@@ -13,6 +14,7 @@
     "title": "北京烤鸭切片",
     "answer": "duck",
     "file": "assets/peking-duck-carved.jpg",
+    "clue": "薄片、脆皮、配饼和甜面酱，是北京烤鸭的经典上桌方式。",
     "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Peking%20Duck,%202014%20(02).jpg?width=1100",
     "sourceUrl": "https://en.wikipedia.org/wiki/Peking_duck",
     "provider": "Wikipedia / Wikimedia Commons"
@@ -22,6 +24,7 @@
     "title": "圣诞烤鹅二号",
     "answer": "goose",
     "file": "assets/christmas-goose-2.jpg",
+    "clue": "这张还是德式节日烤鹅，整只上桌的体型和皮色是关键线索。",
     "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Christmas-goose-(Weihnachtsgans)%201.jpg?width=1100",
     "sourceUrl": "https://en.wikipedia.org/wiki/List_of_German_dishes",
     "provider": "Wikipedia / Wikimedia Commons"
@@ -31,6 +34,7 @@
     "title": "片皮鸭卷",
     "answer": "duck",
     "file": "assets/peking-duck-wrap.jpg",
+    "clue": "卷饼里包着葱丝、黄瓜和烤鸭片，这题的信号很北京。",
     "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Peking_duck_wrap.jpg?width=1100",
     "sourceUrl": "https://en.wikipedia.org/wiki/Peking_duck",
     "provider": "Wikipedia / Wikimedia Commons"
@@ -40,6 +44,7 @@
     "title": "烧鹅饭配梅子酱",
     "answer": "goose",
     "file": "assets/roast-goose-rice-plum-sauce.jpg",
+    "clue": "烧鹅铺在白饭上，旁边配梅子酱，是很典型的粤式饭局。",
     "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Roast_Goose_Rice_with_Plum_Sauce.jpg?width=1100",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roast_Goose_Rice_with_Plum_Sauce.jpg",
     "provider": "Wikimedia Commons"
@@ -49,6 +54,7 @@
     "title": "烤鸭拼盘",
     "answer": "duck",
     "file": "assets/sliced-peking-duck.jpg",
+    "clue": "切片摆盘、配薄饼和黄瓜葱丝，是烤鸭的高频线索。",
     "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sliced_Peking_Duck.jpg?width=1100",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sliced_Peking_Duck.jpg",
     "provider": "Wikimedia Commons"
@@ -58,6 +64,7 @@
     "title": "鹅肝酱",
     "answer": "goose",
     "file": "assets/foie-gras-en-cocotte.jpg",
+    "clue": "题目范围是鹅为食材的饭局，这道是鹅肝相关料理。",
     "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Foie_gras_en_cocotte.jpg?width=1100",
     "sourceUrl": "https://en.wikipedia.org/wiki/Goose_as_food",
     "provider": "Wikipedia / Wikimedia Commons"
@@ -67,6 +74,7 @@
     "title": "鸭腿油封",
     "answer": "duck",
     "file": "assets/confit-de-canard.jpg",
+    "clue": "油封鸭腿常见于法餐，腿部外形容易让人和鹅腿混淆。",
     "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Confit_de_canard.jpg?width=1100",
     "sourceUrl": "https://en.wikipedia.org/wiki/Duck_as_food",
     "provider": "Wikipedia / Wikimedia Commons"

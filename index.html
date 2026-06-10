@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>鹅鸭饭局鉴定局</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="game" aria-labelledby="game-title">
+        <div class="topbar">
+          <div>
+            <p class="kicker">Goose Duck Goose</p>
+            <h1 id="game-title">鹅鸭饭局鉴定局</h1>
+          </div>
+          <div class="scoreboard" aria-live="polite">
+            <span id="roundLabel">第 1 / 8 题</span>
+            <strong id="scoreLabel">0 分</strong>
+          </div>
+        </div>
+
+        <div class="meter" aria-hidden="true">
+          <span id="progressBar"></span>
+        </div>
+
+        <article class="question-panel">
+          <div class="photo-frame">
+            <img id="dishImage" alt="" referrerpolicy="no-referrer">
+            <div class="image-status" id="imageStatus">正在上菜...</div>
+          </div>
+
+          <div class="question-copy">
+            <p class="round-note" id="roundNote">看图开猜</p>
+            <h2 id="dishTitle">这碗饭局，主角是谁？</h2>
+            <p id="dishHint">凭颜色、切法、配菜和直觉判断：这是鹅，还是鸭？</p>
+
+            <div class="choice-grid" id="choiceGrid">
+              <button class="choice choice-goose" type="button" data-answer="goose">
+                <span>鹅</span>
+                <small>更像鹅肉</small>
+              </button>
+              <button class="choice choice-duck" type="button" data-answer="duck">
+                <span>鸭</span>
+                <small>更像鸭肉</small>
+              </button>
+            </div>
+
+            <div class="feedback" id="feedback" hidden>
+              <strong id="feedbackTitle"></strong>
+              <p id="feedbackText"></p>
+              <a id="sourceLink" href="#" target="_blank" rel="noreferrer">查看照片来源</a>
+            </div>
+
+            <button class="next-button" id="nextButton" type="button" hidden>下一题</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="result-panel" id="resultPanel" hidden aria-live="polite">
+        <p class="kicker">出摊收工</p>
+        <h2 id="resultTitle">你的饭局鉴定报告</h2>
+        <p id="resultText"></p>
+        <div class="result-actions">
+          <button id="restartButton" type="button">再来一局</button>
+        </div>
+        <div class="review-list" id="reviewList"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

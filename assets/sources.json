@@ -1,0 +1,74 @@
+[
+  {
+    "id": "christmas-goose",
+    "title": "圣诞烤鹅",
+    "answer": "goose",
+    "file": "assets/christmas-goose.jpg",
+    "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Christmas_goose_(Weihnachtsgans).jpg?width=1100",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christmas_goose_(Weihnachtsgans).jpg",
+    "provider": "Wikimedia Commons"
+  },
+  {
+    "id": "peking-duck-carved",
+    "title": "北京烤鸭切片",
+    "answer": "duck",
+    "file": "assets/peking-duck-carved.jpg",
+    "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Peking%20Duck,%202014%20(02).jpg?width=1100",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Peking_duck",
+    "provider": "Wikipedia / Wikimedia Commons"
+  },
+  {
+    "id": "christmas-goose-2",
+    "title": "圣诞烤鹅二号",
+    "answer": "goose",
+    "file": "assets/christmas-goose-2.jpg",
+    "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Christmas-goose-(Weihnachtsgans)%201.jpg?width=1100",
+    "sourceUrl": "https://en.wikipedia.org/wiki/List_of_German_dishes",
+    "provider": "Wikipedia / Wikimedia Commons"
+  },
+  {
+    "id": "peking-duck-wrap",
+    "title": "片皮鸭卷",
+    "answer": "duck",
+    "file": "assets/peking-duck-wrap.jpg",
+    "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Peking_duck_wrap.jpg?width=1100",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Peking_duck",
+    "provider": "Wikipedia / Wikimedia Commons"
+  },
+  {
+    "id": "roast-goose-rice-plum-sauce",
+    "title": "烧鹅饭配梅子酱",
+    "answer": "goose",
+    "file": "assets/roast-goose-rice-plum-sauce.jpg",
+    "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Roast_Goose_Rice_with_Plum_Sauce.jpg?width=1100",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roast_Goose_Rice_with_Plum_Sauce.jpg",
+    "provider": "Wikimedia Commons"
+  },
+  {
+    "id": "sliced-peking-duck",
+    "title": "烤鸭拼盘",
+    "answer": "duck",
+    "file": "assets/sliced-peking-duck.jpg",
+    "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sliced_Peking_Duck.jpg?width=1100",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sliced_Peking_Duck.jpg",
+    "provider": "Wikimedia Commons"
+  },
+  {
+    "id": "foie-gras-en-cocotte",
+    "title": "鹅肝酱",
+    "answer": "goose",
+    "file": "assets/foie-gras-en-cocotte.jpg",
+    "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Foie_gras_en_cocotte.jpg?width=1100",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Goose_as_food",
+    "provider": "Wikipedia / Wikimedia Commons"
+  },
+  {
+    "id": "confit-de-canard",
+    "title": "鸭腿油封",
+    "answer": "duck",
+    "file": "assets/confit-de-canard.jpg",
+    "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Confit_de_canard.jpg?width=1100",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Duck_as_food",
+    "provider": "Wikipedia / Wikimedia Commons"
+  }
+]

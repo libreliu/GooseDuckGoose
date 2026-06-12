@@ -13,30 +13,9 @@ python -m http.server 4173
 
 浏览器访问 `http://localhost:4173/`。
 
-## 分享页与排行榜
+## 分享页
 
-答完一局后会进入可截图分享页：包含分数、打败人数、名次、分数分布，以及 6 道题的对错缩略图。移动端样式压缩到一屏内，方便直接截图。
-
-前端会向 `/api/results/` 提交 `{ score, total }` 获取排行榜统计；如果 API 不可用，会自动退回到浏览器本地计数，方便纯静态预览。
-
-Django 后端在 `backend/`，支持 Docker Compose + Caddy 部署到独立 API 域名，并用 `.env` 管理 secret：
-
-```bash
-cd backend
-cp .env.example .env
-# 编辑 .env：API_DOMAIN、DJANGO_SECRET_KEY、DJANGO_ALLOWED_HOSTS、CORS_ALLOWED_ORIGINS
-docker compose up -d --build
-```
-
-Caddy 会监听 80/443，为 `API_DOMAIN` 自动签发和续期 HTTPS 证书，并把 `/api/*` 反代到 Django。
-
-若前端和后端不同源，编辑根目录 `config.js`：
-
-```js
-window.GDG_API_BASE = "https://api.example.com";
-```
-
-更多后端说明见 `backend/README.md`。
+答完一局后会进入结果分享页：包含分数、正确率、题数、当前结果 URL、二维码，以及 6 道题的对错缩略图。移动端样式压缩到一屏内，方便直接截图。
 
 ## 图片来源
 

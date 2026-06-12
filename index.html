@@ -10,14 +10,11 @@
     <main class="shell">
       <section class="game" aria-labelledby="game-title">
         <div class="topbar">
-          <div>
+          <div class="topbar-title">
             <p class="kicker">Goose Duck Goose</p>
             <h1 id="game-title">鹅鸭饭局鉴定局</h1>
           </div>
           <div class="topbar-actions">
-            <a class="contribute-link" href="https://github.com/MeowIntelligence/GooseDuckGoose/pulls" target="_blank" rel="noreferrer">
-              贡献新题目
-            </a>
             <div class="scoreboard" aria-live="polite">
               <span id="roundLabel">第 1 / 8 题</span>
               <strong id="scoreLabel">0 分</strong>
@@ -64,9 +61,19 @@
 
       <section class="result-panel" id="resultPanel" hidden aria-live="polite">
         <div class="share-card" id="shareCard">
-          <p class="kicker">可截图分享</p>
+          <p class="kicker">本局鉴定</p>
           <h2 id="resultTitle">你的饭局鉴定报告</h2>
           <p id="resultText"></p>
+
+          <div class="share-link">
+            <span>小游戏 URL</span>
+            <a id="shareUrl" href="#" target="_blank" rel="noreferrer"></a>
+          </div>
+
+          <div class="share-qr" id="shareQrBlock">
+            <canvas id="shareQrCanvas" width="148" height="148" aria-label="小游戏二维码"></canvas>
+            <p id="shareQrHint">扫码来玩</p>
+          </div>
 
           <div class="share-stats">
             <div>
@@ -74,27 +81,51 @@
               <strong id="shareScore">0/0</strong>
             </div>
             <div>
-              <span>打败</span>
-              <strong id="beatenCount">计算中</strong>
+              <span>正确率</span>
+              <strong id="accuracyLabel">0%</strong>
             </div>
             <div>
-              <span>排行</span>
-              <strong id="rankLabel">--</strong>
+              <span>题数</span>
+              <strong id="totalLabel">0</strong>
             </div>
           </div>
 
-          <div class="distribution" aria-label="分数分布" id="distributionChart"></div>
           <div class="mini-review" id="miniReview" aria-label="答题缩略复盘"></div>
         </div>
 
         <div class="result-actions">
+          <button id="toggleQrButton" type="button">隐藏二维码</button>
           <button id="restartButton" type="button">再来一局</button>
         </div>
         <div class="review-list" id="reviewList"></div>
       </section>
     </main>
 
-    <script src="config.js"></script>
+    <footer class="site-footer" aria-label="站点链接">
+      <a class="site-footer-link github-link" href="https://github.com/libreliu" target="_blank" rel="noreferrer" aria-label="GitHub @libreliu">
+        <svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.67 0 8.2c0 3.62 2.29 6.69 5.47 7.77.4.08.55-.18.55-.4 0-.2-.01-.85-.01-1.54-2.01.38-2.53-.5-2.69-.97-.09-.24-.48-.97-.82-1.17-.28-.15-.68-.52-.01-.53.63-.01 1.08.59 1.23.83.72 1.24 1.87.89 2.33.68.07-.53.28-.89.51-1.09-1.78-.21-3.64-.91-3.64-4.04 0-.89.31-1.62.82-2.19-.08-.21-.36-1.04.08-2.16 0 0 .67-.22 2.2.84A7.42 7.42 0 0 1 8 3.96c.68 0 1.36.09 2 .27 1.53-1.06 2.2-.84 2.2-.84.44 1.12.16 1.95.08 2.16.51.57.82 1.3.82 2.19 0 3.14-1.87 3.83-3.65 4.04.29.26.54.75.54 1.52 0 1.1-.01 1.98-.01 2.25 0 .22.15.48.55.4A8.1 8.1 0 0 0 16 8.2C16 3.67 12.42 0 8 0Z"/>
+        </svg>
+        <span>@libreliu</span>
+      </a>
+      <a class="site-footer-link" id="sourceButton" href="#source">
+        图片来源
+      </a>
+    </footer>
+
+    <div class="source-modal" id="sourceModal" hidden>
+      <div class="source-dialog" role="dialog" aria-modal="true" aria-labelledby="sourceDialogTitle">
+        <div class="source-dialog-head">
+          <div>
+            <p class="kicker">Image Credits</p>
+            <h2 id="sourceDialogTitle">图片来源</h2>
+          </div>
+          <button class="source-close" id="sourceCloseButton" type="button" aria-label="关闭图片来源">×</button>
+        </div>
+        <div class="source-list" id="sourceList"></div>
+      </div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>

@@ -78,5 +78,77 @@
     "downloadUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Confit_de_canard.jpg?width=1100",
     "sourceUrl": "https://en.wikipedia.org/wiki/Duck_as_food",
     "provider": "Wikipedia / Wikimedia Commons"
+  },
+  {
+    "id": "xuan-shao-e-1",
+    "title": "烧鹅饭",
+    "answer": "goose",
+    "file": "assets/xuan/shao-e-1.jpg",
+    "clue": "美味的烧鹅饭，搭配爽脆的土豆丝。",
+    "provider": "Xuan"
+  },
+  {
+    "id": "meow-shao-e-2",
+    "title": "烧鹅饭",
+    "answer": "goose",
+    "file": "assets/meow/shao-e-2.jpg",
+    "clue": "潮巷的烧鹅饭，鹅肉醇香滑腻的口感让人回味无穷。",
+    "provider": "Meow"
+  },
+  {
+    "id": "xuan-shao-e-3",
+    "title": "烧鹅饭",
+    "answer": "goose",
+    "file": "assets/xuan/shao-e-3.jpg",
+    "clue": "烧鹅饭，有着独特的调味和口感。",
+    "provider": "Xuan"
+  },
+  {
+    "id": "rui-chang-lai-lu-e",
+    "title": "碌鹅",
+    "answer": "goose",
+    "file": "assets/rui/chang-lai-lu-e.jpg",
+    "clue": "碌鹅是广东地区的特色菜肴，以鹅肉为主料，口感鲜美。",
+    "provider": "Rui"
+  },
+  {
+    "id": "jin-ling-lao-lu-kao-ya",
+    "title": "金陵老卤烤鸭",
+    "answer": "duck",
+    "file": "assets/rui/jin-ling-lao-lu-kao-ya.jpg",
+    "clue": "金陵老卤烤鸭是江苏南京的传统名菜，以其独特的卤制工艺和鲜美的口感而闻名。",
+    "provider": "Rui"
+  },
+  {
+    "id": "li-zhi-chai-shao-e",
+    "title": "荔枝柴烧鹅",
+    "answer": "goose",
+    "file": "assets/rui/li-zhi-chai-shao-e.jpg",
+    "clue": "荔枝柴烧鹅是广东东莞地区的特色美食，用荔枝木烤制，皮脆肉嫩。",
+    "provider": "Rui"
+  },
+  {
+    "id": "nan-jing-yan-shui-ya",
+    "title": "南京盐水鸭",
+    "answer": "duck",
+    "file": "assets/rui/nan-jing-yan-shui-ya.jpg",
+    "clue": "南京盐水鸭是江苏南京的传统名菜，‌皮白肉嫩、肥而不腻。",
+    "provider": "Rui"
+  },
+  {
+    "id": "quan-zhou-jiang-mu-ya",
+    "title": "泉州姜母鸭",
+    "answer": "duck",
+    "file": "assets/rui/quan-zhou-jiang-mu-ya.jpg",
+    "clue": "泉州姜母鸭是福建泉州的传统名菜，用‌老姜‌和‌番鸭‌在砂锅里慢炖，味道鲜香微辣。",
+    "provider": "Rui"
+  },
+  {
+    "id": "shen-jing-shao-e",
+    "title": "烧鹅",
+    "answer": "goose",
+    "file": "assets/rui/shen-jing-shao-e.jpg",
+    "clue": "深井烧鹅是是广东传统广府菜，以皮脆肉嫩、骨香多汁闻名。",
+    "provider": "Rui"
   }
 ]

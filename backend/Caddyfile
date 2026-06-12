@@ -1,0 +1,16 @@
+{$API_DOMAIN} {
+  encode zstd gzip
+
+  header {
+    X-Content-Type-Options nosniff
+    Referrer-Policy no-referrer-when-downgrade
+  }
+
+  handle /api/* {
+    reverse_proxy api:8000
+  }
+
+  handle {
+    respond "GooseDuckGoose API" 200
+  }
+}

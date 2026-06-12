@@ -1,5 +1,6 @@
 const QUESTIONS_PER_GAME = 6;
 const SOURCE_FILE = "assets/sources.json";
+const API_BASE = window.GDG_API_BASE || "";
 
 const state = {
   dishes: [],
@@ -30,7 +31,12 @@ const els = {
   resultTitle: document.querySelector("#resultTitle"),
   resultText: document.querySelector("#resultText"),
   reviewList: document.querySelector("#reviewList"),
-  restartButton: document.querySelector("#restartButton")
+  restartButton: document.querySelector("#restartButton"),
+  shareScore: document.querySelector("#shareScore"),
+  beatenCount: document.querySelector("#beatenCount"),
+  rankLabel: document.querySelector("#rankLabel"),
+  distributionChart: document.querySelector("#distributionChart"),
+  miniReview: document.querySelector("#miniReview")
 };
 
 els.choiceGrid.addEventListener("click", (event) => {
@@ -168,7 +174,13 @@ function showResult() {
   const title = percent >= 88 ? "摊前大师" : percent >= 63 ? "饭局半仙" : percent >= 38 ? "还有救的食探" : "被油亮外皮迷住了";
   els.resultTitle.textContent = `${state.score} / ${total}：${title}`;
   els.resultText.textContent = resultLine(percent);
+  els.shareScore.textContent = `${state.score}/${total}`;
+  els.beatenCount.textContent = "计算中";
+  els.rankLabel.textContent = "--";
   els.reviewList.innerHTML = state.history.map(reviewCard).join("");
+  els.miniReview.innerHTML = state.history.map(miniReviewItem).join("");
+  renderDistribution(emptyDistribution(total), total, state.score);
+  submitResult({ score: state.score, total });
 }
 
 function reviewCard(item, index) {
@@ -183,6 +195,67 @@ function reviewCard(item, index) {
       </div>
     </article>
   `;
+}
+
+function miniReviewItem(item, index) {
+  const mark = item.correct ? "✓" : "×";
+  const label = item.answer === "goose" ? "鹅" : "鸭";
+  return `
+    <div class="mini-review-item ${item.correct ? "is-right" : "is-wrong"}" title="第 ${index + 1} 题：${item.title}">
+      <img src="${item.image}" alt="">
+      <span>${mark}</span>
+      <small>${label}</small>
+    </div>
+  `;
+}
+
+async function submitResult(payload) {
+  try {
+    const response = await fetch(`${API_BASE}/api/results/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error(`排行榜提交失败：${response.status}`);
+    renderLeaderboard(await response.json(), payload.total, payload.score);
+  } catch (error) {
+    const localStats = localFallbackStats(payload);
+    renderLeaderboard(localStats, payload.total, payload.score);
+  }
+}
+
+function renderLeaderboard(stats, total, score) {
+  const beaten = Number(stats.beaten_count || 0);
+  const players = Number(stats.total_players || 1);
+  els.beatenCount.textContent = `${beaten} 人`;
+  els.rankLabel.textContent = `第 ${stats.rank || 1} / ${players}`;
+  renderDistribution(stats.distribution || emptyDistribution(total), total, score);
+}
+
+function renderDistribution(distribution, total, currentScore) {
+  const counts = Array.from({ length: total + 1 }, (_, score) => Number(distribution[score] || 0));
+  const max = Math.max(1, ...counts);
+  els.distributionChart.innerHTML = counts.map((count, score) => `
+    <div class="dist-col ${score === currentScore ? "is-current" : ""}">
+      <span style="height:${Math.max(8, Math.round((count / max) * 100))}%"></span>
+      <small>${score}</small>
+    </div>
+  `).join("");
+}
+
+function emptyDistribution(total) {
+  return Object.fromEntries(Array.from({ length: total + 1 }, (_, score) => [score, 0]));
+}
+
+function localFallbackStats({ score, total }) {
+  const key = `gdg-score-counts-${total}`;
+  const distribution = { ...emptyDistribution(total), ...JSON.parse(localStorage.getItem(key) || "{}") };
+  distribution[score] = Number(distribution[score] || 0) + 1;
+  localStorage.setItem(key, JSON.stringify(distribution));
+  const totalPlayers = Object.values(distribution).reduce((sum, count) => sum + Number(count || 0), 0);
+  const beaten = Object.entries(distribution).reduce((sum, [bucket, count]) => sum + (Number(bucket) < score ? Number(count) : 0), 0);
+  const higher = Object.entries(distribution).reduce((sum, [bucket, count]) => sum + (Number(bucket) > score ? Number(count) : 0), 0);
+  return { distribution, total_players: totalPlayers, beaten_count: beaten, rank: higher + 1 };
 }
 
 function resultLine(percent) {

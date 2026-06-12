@@ -13,6 +13,29 @@ python -m http.server 4173
 
 浏览器访问 `http://localhost:4173/`。
 
+## 分享页与排行榜
+
+答完一局后会进入可截图分享页：包含分数、打败人数、名次、分数分布，以及 6 道题的对错缩略图。移动端样式压缩到一屏内，方便直接截图。
+
+前端会向 `/api/results/` 提交 `{ score, total }` 获取排行榜统计；如果 API 不可用，会自动退回到浏览器本地计数，方便纯静态预览。
+
+Django 后端在 `backend/`：
+
+```bash
+cd backend
+python -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver 0.0.0.0:8000
+```
+
+若前端和后端不同源，在加载 `app.js` 前设置：
+
+```html
+<script>window.GDG_API_BASE = "http://localhost:8000";</script>
+```
+
 ## 图片来源
 
 游戏图片已下载到 `assets/`。本地文件名、答案、题目描述和来源说明记录在 `assets/sources.json`。`downloadUrl` 和 `sourceUrl` 可以填写，但不是必填字段。

@@ -63,9 +63,30 @@
       </section>
 
       <section class="result-panel" id="resultPanel" hidden aria-live="polite">
-        <p class="kicker">出摊收工</p>
-        <h2 id="resultTitle">你的饭局鉴定报告</h2>
-        <p id="resultText"></p>
+        <div class="share-card" id="shareCard">
+          <p class="kicker">可截图分享</p>
+          <h2 id="resultTitle">你的饭局鉴定报告</h2>
+          <p id="resultText"></p>
+
+          <div class="share-stats">
+            <div>
+              <span>得分</span>
+              <strong id="shareScore">0/0</strong>
+            </div>
+            <div>
+              <span>打败</span>
+              <strong id="beatenCount">计算中</strong>
+            </div>
+            <div>
+              <span>排行</span>
+              <strong id="rankLabel">--</strong>
+            </div>
+          </div>
+
+          <div class="distribution" aria-label="分数分布" id="distributionChart"></div>
+          <div class="mini-review" id="miniReview" aria-label="答题缩略复盘"></div>
+        </div>
+
         <div class="result-actions">
           <button id="restartButton" type="button">再来一局</button>
         </div>
